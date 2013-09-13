@@ -13,22 +13,27 @@ UF::UF(int N)
 
 bool UF::connected(int p, int q)
 {
-  return id[p] == id[q];
+  int left = root(p);
+  int right = root(q);
+  return left == right;
 }
 
 void UF::unify(int p, int q)
 {
-  int qid = id[q];
-  int pid = id[p];
-  for (int i = 0; i < n; i++)
-  {
-    if (id[i] == pid)
-    {
-      id[i] = qid;
-    }
-  }
+  int proot = root(p);
+  int qroot = root(q);
+  id[proot] = qroot;
 }
 
 int UF::get(int i){
   return id[i];
+}
+
+int UF::root(int p){
+  int pc = p;
+  while (pc != id[pc])
+  {
+    pc = id[pc];
+  }
+  return pc;
 }

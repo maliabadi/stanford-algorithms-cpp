@@ -5,8 +5,9 @@ int main()
 {
   const int n = 10;
   UF uf = UF(n);
-  int cmds[n][2] = 
-  { {4,3},
+  
+  int cmds[n][2] = {
+    {4,3},
     {3,8},
     {6,5},
     {9,4},
@@ -15,15 +16,23 @@ int main()
     {5,0},
     {7,2},
     {6,1},
-    {1,0} };
-  for (int i = 0; i < 10; i++){
+    {1,0}
+  };
+  
+  // send UF instance each pair of commands
+  for (int i = 0; i < 10; i++)
+  {
     int p = cmds[i][0];
     int q = cmds[i][1];
     uf.unify(p, q);
   }
-  for (int i = 0; i < 10; i++){
+  
+  // display the uf instance's array
+  for (int i = 0; i < 10; i++)
+  {
     std::cout << uf.get(i) << "\n";
   }
+
   return 0;
 }
 
